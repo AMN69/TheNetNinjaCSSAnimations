@@ -44,8 +44,27 @@ h1{
 
 /*// ANIMATION STYLES //*/
 
+.panels div.back{
+  transform: rotateY(90deg); /* AMN - By rotating the panels we make them dissapear */
+}
 
+.panels div.front{
+  position: absolute; /* AMN - Now the front occupies all the space left by the back after rotating */
+}
 
+.panels li:hover div.front{
+  animation: twirl 0.2s ease-in forwards;
+}
+
+.panels li:hover div.back{
+  /* AMN - As the back is 90 degrees turned we use reverse to make the twirl keyframe go from 90 deg to 0 */
+  animation: twirl 0.2s 0.2s ease-out forwards reverse; 
+}
+
+@keyframes twirl{
+  0%{transform: rotateY(0deg)}
+  100%{transform: rotateY(90deg)}
+}
 
 
 

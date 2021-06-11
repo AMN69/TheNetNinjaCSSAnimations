@@ -7,6 +7,31 @@ html, body{
   margin: 0;
 }
 
+/* AMN - Example of how to move an image: moves (translate), sizes (scale) and rotates */
+.cloud{
+  transform: translate(400px, 50px) scale(0.7) rotate(10deg);
+}
+
+.circle{
+  width: 100px;
+  padding: 50px 0;
+  line-height: 0;
+  margin: 20px auto;
+  background: pink;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 1s, transform 0.3s 1s ease-out; 
+  /* AMN - example of transition that changes background color during 1 second and turns 360 degrees 
+    the circle after a delay of 1s. So, all takes 1.3 seconds */
+}
+
+.circle:hover{
+  background: salmon;
+  transform: rotate(360deg);
+}
+
 .grass, .sky, .road{
   position: relative;
 }
@@ -41,12 +66,83 @@ html, body{
 
 /*// ELEMENTS TO ANIMATE //*/
 
+/* AMN - to define an animation we have to: 
+  1st) give it a name and duration 
+  2nd) decide what we want to do with the image once the animtaion is over (fill-mode)
+  3rd) define the animation from where we want to go till where we want to arrive */
 
+.mario{
+  position: absolute;
+  top: -40px;
+  left: 0px;
+  /* animation-name: drive;
+  animation-duration: 3s;
+  animation-fill-mode: both;*/ /* AMN - combines backwards and forwards */
+  /* animation-delay: 2s; AMN - this is not necessary when we want to apply iteration to repeat the animation */
+  /* animation-iteration-count: infinite; /* AMN - for ever or a number for n times */
+  /* AMN - check cubic-bezier option through google to configure the speed of the animation at the start, middle and end */
+  /* animation-timing-function: ease-in;  */
+  /* animation-timing-function: cubic-bezier(0,.77,1,.28);*/
+
+  /* AMN - We chain two animations. After 1sec Mario jumps for 2secs */
+  animation: drive 3s both infinite linear, 
+             jump 1s 2s ease;
+}
+
+.luigi{
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  animation-name: drive;
+  animation-duration: 5s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-direction: reverse;
+}
+
+.cloudbis{
+  position: absolute;
+}
+
+.cloudbis:nth-child(1){
+  width: 200px;
+  top: 120px;
+  opacity: 0.5;
+  /* AMN - Example of animation shorthand */
+  animation: wind 80s linear infinite reverse;
+}
+
+.cloudbis:nth-child(2){
+  width: 300px;
+  top: 0;
+  animation: wind 50s linear infinite reverse;
+}
 
 /*// KEYFRAMES //*/
 
+@keyframes drive {
+  from{
+    transform: translateX(-200px); /* AMN - with a negative value Mario seems to appear from outside the screen */
+  }
+  to{
+    transform: translateX(1000px);
+  }
+}
 
+@keyframes wind {
+  from{
+    left: -300px
+  }
+  to{
+    left: 100%
+  }
+}
 
+@keyframes jump{
+  0% { top: -40px } 
+  50% { top: -100px }
+  100% { top: -40px }
+}
 
 
 

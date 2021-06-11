@@ -62,6 +62,25 @@ button{
 
 /*// POP-UP ANIMATION STYLES //*/
 
+#pop-up{
+  top: -400px;
+  transform-origin: 10px 10px; /* AMN - rotates using the top-rigth angle as a hanging point instead of the middle */
+  animation: drop 2s ease forwards,
+             swing 2s  3s ease forwards;
+}
+
+@keyframes drop {
+  0% { opacity: 0}
+  70% { transform: translateY(750px) }
+  100% { transform: translateY(650px); opacity: 1; }
+}
+
+@keyframes swing {
+  0% {transform: translateY(650px) rotateZ(0deg)}
+  40% {transform: translateY(650px) rotateZ(90deg)}
+  70% {transform: translateY(650px) rotateZ(70deg)}
+  100% {transform: translateY(650px) rotateZ(75deg)}
+}
 
 /*// BASKET BASE STYLES //*/
 
@@ -101,5 +120,19 @@ header:after{
 
 /*// BASKET ANIMATION STYLES //*/
 
+.zoom{
+  position: absolute;
+  top: 40px;
+  right: 50%;
+  width: 40px;
+  opacity: 0;
+  animation: zoom 1s ease forwards;
+}
 
-
+/* AMN - We make the copy of the img created by jquery in the basket.html
+  to move from the top-left right to the top-right to the basket */
+@keyframes zoom{
+  0%{opacity: 0}
+  50%{opacity: 1}
+  100%{opacity: 0; right: 40px}
+}

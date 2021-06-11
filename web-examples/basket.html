@@ -41,7 +41,19 @@
       <button>Add to Basket</button>
     </li>
   </ul>
+  <!-- AMN - this is jquery and appends a copy of the img clicked
+  adding it at the bottom but then through CSS keyframes we put the 
+  img at the top and move it to the basket -->
   <script>
-    
+    $("button").on("click", function(){
+      $(this).closest("li")
+        .find("img")
+        .clone()
+        .addClass("zoom")
+        .appendTo("body");
+      setTimeout(function(){
+        $(".zoom").remove();
+      }, 1000);
+    });
   </script>
 </body>
